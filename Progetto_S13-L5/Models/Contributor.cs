@@ -60,13 +60,16 @@ namespace Progetto_S13_L5.Models
 
             Console.Clear();
             Console.WriteLine(
-                $"Contributor: {myTI.ToTitleCase(Name)} {myTI.ToTitleCase(Surname)},"
+                $"Contributor: {myTI.ToTitleCase(Name.ToLower())} {myTI.ToTitleCase(Surname.ToLower())},"
             );
             Console.WriteLine($"born on {BirthDay.ToShortDateString()} ({Gender.ToUpper()}),");
-            Console.WriteLine($"resident in {myTI.ToTitleCase(TownOfResidence)},");
+            Console.WriteLine($"resident in {myTI.ToTitleCase(TownOfResidence.ToLower())},");
             Console.WriteLine($"fiscal code: {CF.ToUpper()}");
             Console.WriteLine($"Declared income: €{AnnualIncome:0.00}");
-            Console.WriteLine($"TAX TO PAY: €{CalculateTax():0.00}");
+            Console.Write("TAX TO PAY: ");
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.Write($"€{CalculateTax():0.00}\n");
+            Console.ResetColor();
         }
     }
 }
