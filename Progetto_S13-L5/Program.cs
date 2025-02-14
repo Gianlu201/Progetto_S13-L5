@@ -2,6 +2,7 @@
 
 Console.OutputEncoding = System.Text.Encoding.UTF8;
 Console.Title = "EPITAX";
+string intestation = "====== WELCOME IN EPITAX ======\n";
 
 bool error = false;
 
@@ -9,7 +10,8 @@ string? name = "";
 while (string.IsNullOrWhiteSpace(name) || string.IsNullOrEmpty(name))
 {
     Console.Clear();
-    Console.WriteLine("====== WELCOME IN EPITAX ======\n");
+    Console.SetCursorPosition((Console.WindowWidth - intestation.Length) / 2, Console.CursorTop);
+    Console.WriteLine(intestation);
     if (error)
     {
         Console.ForegroundColor = ConsoleColor.Red;
@@ -26,7 +28,8 @@ string? surname = "";
 while (string.IsNullOrWhiteSpace(surname) || string.IsNullOrEmpty(surname))
 {
     Console.Clear();
-    Console.WriteLine("====== WELCOME IN EPITAX ======\n");
+    Console.SetCursorPosition((Console.WindowWidth - intestation.Length) / 2, Console.CursorTop);
+    Console.WriteLine(intestation);
     if (error)
     {
         Console.ForegroundColor = ConsoleColor.Red;
@@ -44,7 +47,8 @@ DateTime birthday;
 do
 {
     Console.Clear();
-    Console.WriteLine("====== WELCOME IN EPITAX ======\n");
+    Console.SetCursorPosition((Console.WindowWidth - intestation.Length) / 2, Console.CursorTop);
+    Console.WriteLine(intestation);
     if (error)
     {
         Console.ForegroundColor = ConsoleColor.Red;
@@ -61,7 +65,8 @@ string? fiscalCode = "";
 while (string.IsNullOrWhiteSpace(fiscalCode) || string.IsNullOrEmpty(fiscalCode))
 {
     Console.Clear();
-    Console.WriteLine("====== WELCOME IN EPITAX ======\n");
+    Console.SetCursorPosition((Console.WindowWidth - intestation.Length) / 2, Console.CursorTop);
+    Console.WriteLine(intestation);
     if (error)
     {
         Console.ForegroundColor = ConsoleColor.Red;
@@ -78,7 +83,8 @@ string? gender = "";
 while (gender?.ToLower() is not "m" and not "f" and not "o")
 {
     Console.Clear();
-    Console.WriteLine("====== WELCOME IN EPITAX ======\n");
+    Console.SetCursorPosition((Console.WindowWidth - intestation.Length) / 2, Console.CursorTop);
+    Console.WriteLine(intestation);
     if (error)
     {
         Console.ForegroundColor = ConsoleColor.Red;
@@ -95,7 +101,8 @@ string? residence = "";
 while (string.IsNullOrWhiteSpace(residence) || string.IsNullOrEmpty(residence))
 {
     Console.Clear();
-    Console.WriteLine("====== WELCOME IN EPITAX ======\n");
+    Console.SetCursorPosition((Console.WindowWidth - intestation.Length) / 2, Console.CursorTop);
+    Console.WriteLine(intestation);
     if (error)
     {
         Console.ForegroundColor = ConsoleColor.Red;
@@ -113,7 +120,8 @@ double income;
 do
 {
     Console.Clear();
-    Console.WriteLine("====== WELCOME IN EPITAX ======\n");
+    Console.SetCursorPosition((Console.WindowWidth - intestation.Length) / 2, Console.CursorTop);
+    Console.WriteLine(intestation);
     if (error)
     {
         Console.ForegroundColor = ConsoleColor.Red;
