@@ -1,47 +1,131 @@
 ﻿using Progetto_S13_L5.Models;
 
 Console.OutputEncoding = System.Text.Encoding.UTF8;
+Console.Title = "EPITAX";
 
-Console.WriteLine("====== WELCOME IN EPITAX ======\n");
+bool error = false;
 
-Console.Write("What's your name: ");
-string name = Console.ReadLine();
+string? name = "";
+while (string.IsNullOrWhiteSpace(name) || string.IsNullOrEmpty(name))
+{
+    Console.Clear();
+    Console.WriteLine("====== WELCOME IN EPITAX ======\n");
+    if (error)
+    {
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine("Information required!");
+        Console.ResetColor();
+    }
+    Console.Write("What's your name: ");
+    name = Console.ReadLine();
+    error = true;
+}
 
-Console.Clear();
-Console.WriteLine("====== WELCOME IN EPITAX ======\n");
-Console.Write("What's your surname: ");
-string surname = Console.ReadLine();
+error = false;
+string? surname = "";
+while (string.IsNullOrWhiteSpace(surname) || string.IsNullOrEmpty(surname))
+{
+    Console.Clear();
+    Console.WriteLine("====== WELCOME IN EPITAX ======\n");
+    if (error)
+    {
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine("Information required!");
+        Console.ResetColor();
+    }
+    Console.Write("What's your surname: ");
+    surname = Console.ReadLine();
+    error = true;
+}
 
-Console.Clear();
-Console.WriteLine("====== WELCOME IN EPITAX ======\n");
-Console.Write("What's your birthday (DD/MM/YYYY): ");
-string birthday = Console.ReadLine();
+error = false;
+string? birthdayStr = "";
+DateTime birthday;
+do
+{
+    Console.Clear();
+    Console.WriteLine("====== WELCOME IN EPITAX ======\n");
+    if (error)
+    {
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine("Check date form!");
+        Console.ResetColor();
+    }
+    Console.Write("What's your birthday (DD/MM/YYYY): ");
+    birthdayStr = Console.ReadLine();
+    error = true;
+} while (birthdayStr?.Length != 10 || !DateTime.TryParse(birthdayStr, out birthday));
 
-Console.Clear();
-Console.WriteLine("====== WELCOME IN EPITAX ======\n");
-Console.Write("What's your fiscal code: ");
-string fiscalCode = Console.ReadLine();
+error = false;
+string? fiscalCode = "";
+while (string.IsNullOrWhiteSpace(fiscalCode) || string.IsNullOrEmpty(fiscalCode))
+{
+    Console.Clear();
+    Console.WriteLine("====== WELCOME IN EPITAX ======\n");
+    if (error)
+    {
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine("Information required!");
+        Console.ResetColor();
+    }
+    Console.Write("What's your fiscal code: ");
+    fiscalCode = Console.ReadLine();
+    error = true;
+}
 
-Console.Clear();
-Console.WriteLine("====== WELCOME IN EPITAX ======\n");
-Console.Write("What's your gender (M/F/O): ");
-string gender = Console.ReadLine();
+error = false;
+string? gender = "";
+while (gender?.ToLower() is not "m" and not "f" and not "o")
+{
+    Console.Clear();
+    Console.WriteLine("====== WELCOME IN EPITAX ======\n");
+    if (error)
+    {
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine("Choose one of the options!");
+        Console.ResetColor();
+    }
+    Console.Write("What's your gender (M/F/O): ");
+    gender = Console.ReadLine();
+    error = true;
+}
 
-Console.Clear();
-Console.WriteLine("====== WELCOME IN EPITAX ======\n");
-Console.Write("What's your town of residence: ");
-string residence = Console.ReadLine();
+error = false;
+string? residence = "";
+while (string.IsNullOrWhiteSpace(residence) || string.IsNullOrEmpty(residence))
+{
+    Console.Clear();
+    Console.WriteLine("====== WELCOME IN EPITAX ======\n");
+    if (error)
+    {
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine("Information required!");
+        Console.ResetColor();
+    }
+    Console.Write("What's your town of residence: ");
+    residence = Console.ReadLine();
+    error = true;
+}
 
-Console.Clear();
-Console.WriteLine("====== WELCOME IN EPITAX ======\n");
-Console.Write("What's your annual income: ");
-string income = Console.ReadLine();
+error = false;
+string? incomeStr = "";
+double income;
+do
+{
+    Console.Clear();
+    Console.WriteLine("====== WELCOME IN EPITAX ======\n");
+    if (error)
+    {
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine("Check your answer!");
+        Console.ResetColor();
+    }
+    Console.Write("What's your annual income (Ex. 17850,40): ");
+    incomeStr = Console.ReadLine();
+    error = true;
+} while (!double.TryParse(incomeStr, out income));
 
-var test = DateTime.Parse(birthday);
-
-double incomeConv = double.Parse(income);
-
-var user = new Contributor(name, surname, test, fiscalCode, gender, residence, incomeConv);
+var user = new Contributor(name, surname, birthday, fiscalCode, gender, residence, income);
 
 user.ShowAllInfos();
 

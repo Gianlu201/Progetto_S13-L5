@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Progetto_S13_L5.Models
 {
@@ -42,40 +44,29 @@ namespace Progetto_S13_L5.Models
 
         public double CalculateTax()
         {
-            double tax = 0;
-            switch (AnnualIncome)
+            return AnnualIncome switch
             {
-                case <= stagger1:
-                    tax = AnnualIncome * 0.23;
-                    return tax;
-
-                case <= stagger2:
-                    tax = 3450 + (AnnualIncome - stagger1) * 0.27;
-                    return tax;
-
-                case <= stagger3:
-                    tax = 6960 + (AnnualIncome - stagger2) * 0.38;
-                    return tax;
-
-                case <= stagger4:
-                    tax = 17220 + (AnnualIncome - stagger3) * 0.41;
-                    return tax;
-
-                default:
-                    tax = 25420 + (AnnualIncome - stagger4) * 0.43;
-                    return tax;
-            }
+                <= stagger1 => AnnualIncome * 0.23,
+                <= stagger2 => 3450 + ((AnnualIncome - stagger1) * 0.27),
+                <= stagger3 => 6960 + ((AnnualIncome - stagger2) * 0.38),
+                <= stagger4 => 17220 + ((AnnualIncome - stagger3) * 0.41),
+                _ => 25420 + ((AnnualIncome - stagger4) * 0.43),
+            };
         }
 
         public void ShowAllInfos()
         {
+            TextInfo myTI = new CultureInfo("en-US", false).TextInfo;
+
             Console.Clear();
-            Console.WriteLine($"Contributor: {Name} {Surname},");
-            Console.WriteLine($"born on {BirthDay.ToShortDateString()} ({Gender}),");
-            Console.WriteLine($"resident in {TownOfResidence},");
-            Console.WriteLine($"fiscal code: {CF}");
-            Console.WriteLine($"Declared income: €{AnnualIncome}");
-            Console.WriteLine($"TAX TO PAY: €{CalculateTax()}");
+            Console.WriteLine(
+                $"Contributor: {myTI.ToTitleCase(Name)} {myTI.ToTitleCase(Surname)},"
+            );
+            Console.WriteLine($"born on {BirthDay.ToShortDateString()} ({Gender.ToUpper()}),");
+            Console.WriteLine($"resident in {myTI.ToTitleCase(TownOfResidence)},");
+            Console.WriteLine($"fiscal code: {CF.ToUpper()}");
+            Console.WriteLine($"Declared income: €{AnnualIncome:0.00}");
+            Console.WriteLine($"TAX TO PAY: €{CalculateTax():0.00}");
         }
     }
 }
